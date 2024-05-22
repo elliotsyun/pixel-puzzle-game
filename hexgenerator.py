@@ -1,20 +1,16 @@
 import random
 
-TOP = 0xFFFFFF
-BOTTOM = 0
+CEILING = 255
+FLOOR = 0
 
 
-def generate_hex_value():
-    '''Generates hex values randomly'''
+def generate_rgb():
+    """Generates a random color tuple that has each value between 0 and 255"""
 
-    color = "%06x" % random.randint(BOTTOM, TOP)
-    print("This is the color: ", color)
+    color = (
+        random.randint(FLOOR, CEILING),
+        random.randint(FLOOR, CEILING),
+        random.randint(FLOOR, CEILING),
+    )
 
     return color
-
-
-def generate_next_value():
-    '''Generates the next hex value to compare it with'''
-
-    # bottom and top should be multiples away from the other one
-    other_color = generate_hex_value()
