@@ -2,8 +2,8 @@ import pygame
 import window
 
 WIDTH, HEIGHT = 600, 500
-GAME_NAME = "COLOR'D"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+GAME_NAME = "COLOR'D"
 BUTTON_SCALE = (120, 120)
 D_PLUS_IMG = pygame.image.load("./Assets/PLUSPLUS.png")
 PLUS_IMG = pygame.image.load("./Assets/PLUS.png")
@@ -23,6 +23,12 @@ def main():
         pygame.display.update()
 
     pygame.quit()
+
+
+def window():
+    """window initialization"""
+    WIN.fill((255, 255, 255))
+    pygame.display.set_caption(GAME_NAME)
 
 
 def button():
