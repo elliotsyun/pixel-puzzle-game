@@ -1,8 +1,10 @@
 import pygame
 
-WIDTH, HEIGHT = 600, 500
+WIDTH, HEIGHT = 255, 255
 GAME_NAME = "COLOR'D"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+
 BUTTON_SCALE = (120, 120)
 D_PLUS_IMG = pygame.image.load('./Assets/PLUSPLUS.png')
 PLUS_IMG = pygame.image.load('./Assets/PLUS.png')
@@ -12,13 +14,33 @@ MIN_IMG = pygame.image.load('./Assets/MIN.png')
 
 def main():
     run = True
-    fps = pygame.time.Clock().tick(60) / 1000
     while run:
+        
+        pygame.time.Clock().tick(10)
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-        window()
-        button()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                color_coord_x, color_coord_y = pygame.mouse.get_pos()
+                print("The color chose: (", color_coord_x, ", ", (255-color_coord_y), ", ", (255-color_coord_y), ")")
+
+        surf = pygame.Surface((1, 2))
+        surf.fill((255, 255, 255))
+        surf.set_at((0, 1), (0, 0, 0))
+        surf = pygame.transform.smoothscale(surf, WIN.get_size())
+
+        surf2 = pygame.Surface((2, 1))
+        surf2.fill((255, 255, 255))
+        surf2.set_at((1, 0), (255, 0, 0))
+        surf2 = pygame.transform.smoothscale(surf2, WIN.get_size())
+        surf.blit(surf2, (0, 0), special_flags=pygame.BLEND_MULT)
+
+        WIN.blit(surf, (0, 0))
+
+        pygame.display.flip()
+        pygame.event.get()
+
         pygame.display.update()
 
     pygame.quit()
@@ -30,16 +52,6 @@ def window():
     pygame.display.set_caption(GAME_NAME)
 
 
-def button():
-    '''button scaling, sizing and placement on the window'''
-    d_plus_img_s = pygame.transform.scale(D_PLUS_IMG, BUTTON_SCALE)
-    plus_img_s = pygame.transform.scale(PLUS_IMG, BUTTON_SCALE)
-    d_min_img_s = pygame.transform.scale(D_MIN_IMG, BUTTON_SCALE)
-    min_img_s = pygame.transform.scale(MIN_IMG, BUTTON_SCALE)
-    WIN.blit(d_plus_img_s, (450, 300))
-    WIN.blit(plus_img_s, (315, 300))
-    WIN.blit(d_min_img_s, (25, 300))
-    WIN.blit(min_img_s, (165, 300))
 
 
 
