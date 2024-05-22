@@ -1,6 +1,6 @@
 import pygame
 
-WIDTH, HEIGHT = 255, 255
+WIDTH, HEIGHT = 400, 400
 GAME_NAME = "COLOR'D"
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -22,29 +22,22 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                color_coord_x, color_coord_y = pygame.mouse.get_pos()
-                print(
-                    "The color chose: (",
-                    color_coord_x,
-                    ", ",
-                    (255 - color_coord_y),
-                    ", ",
-                    (255 - color_coord_y),
-                    ")",
-                )
+                coord = pygame.mouse.get_pos()
+                color = WIN.get_at(coord)
+                print("Color: ", color)
 
-        surf = pygame.Surface((1, 2))
-        surf.fill((255, 255, 255))
-        surf.set_at((0, 1), (0, 0, 0))
-        surf = pygame.transform.smoothscale(surf, WIN.get_size())
+        white_to_black = pygame.Surface((1, 2))
+        white_to_black.fill((255, 255, 255))
+        white_to_black.set_at((0, 1), (0, 0, 0))
+        white_to_black = pygame.transform.smoothscale(white_to_black, (255, 255))
 
-        surf2 = pygame.Surface((2, 1))
-        surf2.fill((255, 255, 255))
-        surf2.set_at((1, 0), (255, 0, 0))
-        surf2 = pygame.transform.smoothscale(surf2, WIN.get_size())
-        surf.blit(surf2, (0, 0), special_flags=pygame.BLEND_MULT)
+        white_to_color = pygame.Surface((2, 1))
+        white_to_color.fill((255, 255, 255))
+        white_to_color.set_at((1, 0), (255, 0, 0))
+        white_to_color = pygame.transform.smoothscale(white_to_color, (255, 255))
+        white_to_black.blit(white_to_color, (0, 0), special_flags=pygame.BLEND_MULT)
 
-        WIN.blit(surf, (0, 0))
+        WIN.blit(white_to_black, (75, 75))
 
         pygame.display.flip()
         pygame.event.get()
