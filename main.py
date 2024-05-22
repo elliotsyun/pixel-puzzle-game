@@ -1,5 +1,6 @@
-import pygame
 from config import WIDTH, HEIGHT, GAME_NAME, WIN
+import pygame
+import window
 
 
 def main():
@@ -15,6 +16,8 @@ def main():
                 coord = pygame.mouse.get_pos()
                 color = WIN.get_at(coord)
                 print("Color: ", color)
+
+        window.gradient_window()
 
         pygame.display.update()
 
