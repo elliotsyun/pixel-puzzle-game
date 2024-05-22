@@ -6,24 +6,32 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
 BUTTON_SCALE = (120, 120)
-D_PLUS_IMG = pygame.image.load('./Assets/PLUSPLUS.png')
-PLUS_IMG = pygame.image.load('./Assets/PLUS.png')
-D_MIN_IMG = pygame.image.load('./Assets/MINMIN.png')
-MIN_IMG = pygame.image.load('./Assets/MIN.png')
+D_PLUS_IMG = pygame.image.load("./Assets/PLUSPLUS.png")
+PLUS_IMG = pygame.image.load("./Assets/PLUS.png")
+D_MIN_IMG = pygame.image.load("./Assets/MINMIN.png")
+MIN_IMG = pygame.image.load("./Assets/MIN.png")
 
 
 def main():
     run = True
     while run:
-        
+
         pygame.time.Clock().tick(10)
-        
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 color_coord_x, color_coord_y = pygame.mouse.get_pos()
-                print("The color chose: (", color_coord_x, ", ", (255-color_coord_y), ", ", (255-color_coord_y), ")")
+                print(
+                    "The color chose: (",
+                    color_coord_x,
+                    ", ",
+                    (255 - color_coord_y),
+                    ", ",
+                    (255 - color_coord_y),
+                    ")",
+                )
 
         surf = pygame.Surface((1, 2))
         surf.fill((255, 255, 255))
@@ -47,12 +55,9 @@ def main():
 
 
 def window():
-    '''window initialization'''
+    """window initialization"""
     WIN.fill((255, 255, 255))
     pygame.display.set_caption(GAME_NAME)
-
-
-
 
 
 if __name__ == "__main__":
