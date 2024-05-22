@@ -33,7 +33,10 @@ def main():
 
         white_to_color = pygame.Surface((2, 1))
         white_to_color.fill((255, 255, 255))
-        white_to_color.set_at((1, 0), (255, 0, 0))
+        
+        changing_color = (255, 0, 0)
+        # below code is changing the color, to red which is (255, 0, 0)
+        white_to_color.set_at((1, 0), changing_color)
         white_to_color = pygame.transform.smoothscale(white_to_color, (255, 255))
         white_to_black.blit(white_to_color, (0, 0), special_flags=pygame.BLEND_MULT)
 
