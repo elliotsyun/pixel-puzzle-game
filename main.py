@@ -13,6 +13,7 @@ MIN_IMG = pygame.image.load("./Assets/MIN.png")
 
 def main():
     run = True
+    fps = pygame.time.Clock().tick(60) / 1000
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
